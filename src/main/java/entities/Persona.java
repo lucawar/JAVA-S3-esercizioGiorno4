@@ -1,12 +1,14 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import ENUM.TipoGenere;
@@ -32,14 +34,16 @@ public class Persona {
 	@Enumerated(EnumType.STRING)
 	private TipoGenere genere;
 
-	public Persona(long id, String nome, String cognome, String email, LocalDate dataNascita, TipoGenere genere) {
-		super();
-		this.id = id;
+	@ManyToMany
+	private Set<GaraDiAtletica> gareAtletica;
+
+	public Persona(String nome, String cognome, String email, String dataNascita, TipoGenere genere) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
-		this.dataNascita = dataNascita;
+		this.dataNascita = LocalDate.parse(dataNascita);
 		this.genere = genere;
+
 	}
 
 	@Override

@@ -3,17 +3,17 @@ package dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import entities.Persona;
+import entities.Partecipazione;
 
-public class PersonaDAO {
+public class PartecipazioneDAO {
 
 	private final EntityManager em;
 
-	public PersonaDAO(EntityManager em) {
+	public PartecipazioneDAO(EntityManager em) {
 		this.em = em;
 	}
 
-	public void save(Persona s) {
+	public void save(Partecipazione s) {
 		EntityTransaction t = em.getTransaction();
 		t.begin();
 
@@ -21,17 +21,17 @@ public class PersonaDAO {
 
 		t.commit();
 
-		System.out.println("Persona salvata correttamente");
+		System.out.println("Partecipazione salvata correttamente");
 	}
 
-	public Persona findById(long id) {
-		Persona found = em.find(Persona.class, id);
+	public Partecipazione findById(long id) {
+		Partecipazione found = em.find(Partecipazione.class, id);
 		return found;
 	}
 
 	public void findByIdAndDelete(long id) {
 
-		Persona found = em.find(Persona.class, id);
+		Partecipazione found = em.find(Partecipazione.class, id);
 		if (found != null) {
 
 			EntityTransaction t = em.getTransaction();
@@ -41,14 +41,14 @@ public class PersonaDAO {
 			em.remove(found);
 
 			t.commit();
-			System.out.println("Persona eliminato correttamente");
+			System.out.println("Partecipazione eliminato correttamente");
 		} else {
-			System.out.println("Persona non trovato");
+			System.out.println("Partecipazione non trovato");
 		}
 	}
 
 	public void refresh(long id) {
-		Persona found = em.find(Persona.class, id);
+		Partecipazione found = em.find(Partecipazione.class, id);
 		found.setId(id);
 
 		System.out.println("PRE REFRESH");

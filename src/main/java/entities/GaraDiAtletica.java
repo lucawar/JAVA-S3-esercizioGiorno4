@@ -3,6 +3,8 @@ package entities;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import ENUM.TipoEvento;
@@ -18,13 +20,15 @@ import lombok.Setter;
 
 public class GaraDiAtletica extends Evento {
 
+	@ManyToMany
 	private Set<Persona> setAtleti;
+
+	@ManyToOne
 	private Persona vincitore;
 
 	public GaraDiAtletica(String titolo, String dataEvento, String descrizione, TipoEvento tipoEvento,
-			int numeroMassimo, Set<Persona> setAtleti, Persona vincitore) {
+			int numeroMassimo, Persona vincitore) {
 		super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimo);
-		this.setAtleti = setAtleti;
 		this.vincitore = vincitore;
 	}
 
